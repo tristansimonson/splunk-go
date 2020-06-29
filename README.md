@@ -84,3 +84,7 @@ Please [open an issue](https://github.com/brittonhayes/splunk-golang/issues/new)
 ## Contributing
 
 Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits, and [open a pull request](https://github.com/brittonhayes/splunk-golang/compare/).
+
+## Acknowledgements
+
+Social image from [Ashley Mcnamara](https://github.com/ashleymcnamara/gophers)
