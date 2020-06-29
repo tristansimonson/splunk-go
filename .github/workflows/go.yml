@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: CI
     runs-on: ubuntu-latest
     steps:
       - name: Set up Go 1.x
@@ -20,5 +20,5 @@ jobs:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v2
 
-      - name: Get dependencies
+      - name: Format Code
         run: go fmt ./pkg
