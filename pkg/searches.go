@@ -5,7 +5,8 @@ import (
 	"net/url"
 )
 
-func (conn SplunkConnection) SearchSync(searchString string) (string, error) {
+// SearchSync performs a search job on splunk with the provided search string
+func (conn Connection) SearchSync(searchString string) (string, error) {
 	data := make(url.Values)
 	data.Add("search", searchString)
 	data.Add("max_time", "30")

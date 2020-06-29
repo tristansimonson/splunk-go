@@ -8,7 +8,8 @@ import (
 	"os"
 )
 
-type SplunkConnection struct {
+// Connection contains the primary auth parameters for connecting to Splunk
+type Connection struct {
 	Username, Password, BaseURL string
 	sessionKey                  SessionKey
 }
@@ -19,7 +20,7 @@ type SessionKey struct {
 }
 
 // Login connects to the Splunk server and retrieves a session key
-func (conn *SplunkConnection) Login() (SessionKey, error) {
+func (conn *Connection) Login() (SessionKey, error) {
 
 	data := make(url.Values)
 	data.Add("username", conn.Username)
@@ -33,21 +34,22 @@ func (conn *SplunkConnection) Login() (SessionKey, error) {
 
 	bytes := []byte(response)
 	var key SessionKey
-	unmarshall_error := json.Unmarshal(bytes, &key)
+	unmarshallError := json.Unmarshal(bytes, &key)
 
 	if key.Value == "" {
 		return SessionKey{}, errors.New(response)
 	}
 
 	conn.sessionKey.Value = key.Value
-	return conn.sessionKey, unmarshall_error
+	return conn.sessionKey, unmarshallError
 }
 
-func CreateConnectionFromEnvironment() (*SplunkConnection, error) {
+// CreateConnectionFromEnvironment sets up a splunk connection
+func CreateConnectionFromEnvironment() (*Connection, error) {
 
 	var splunkUsername string
 	var splunkPassword string
-	var splunkUrl string
+	var splunkURL string
 
 	if splunkUsername = os.Getenv("SPLUNK_USERNAME"); splunkUsername == "" {
 		return nil, fmt.Errorf("Invalid value for environment variable SPLUNK_USERNAME: %v", splunkUsername)
@@ -57,13 +59,13 @@ func CreateConnectionFromEnvironment() (*SplunkConnection, error) {
 		return nil, fmt.Errorf("Invalid value for environment variable SPLUNK_PASSWORD: %v", splunkPassword)
 	}
 
-	if splunkUrl = os.Getenv("SPLUNK_URL"); splunkUrl == "" {
-		return nil, fmt.Errorf("Invalid value for environment variable SPLUNK_URL: %v", splunkUrl)
+	if splunkURL = os.Getenv("SPLUNK_URL"); splunkURL == "" {
+		return nil, fmt.Errorf("Invalid value for environment variable SPLUNK_URL: %v", splunkURL)
 	}
 
-	return &SplunkConnection{
+	return &Connection{
 		Username: splunkUsername,
 		Password: splunkPassword,
-		BaseURL:  splunkUrl,
+		BaseURL:  splunkURL,
 	}, nil
 }

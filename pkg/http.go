@@ -22,15 +22,15 @@ func httpClient() *http.Client {
 	return client
 }
 
-func (conn SplunkConnection) httpGet(url string, data *url.Values) (string, error) {
+func (conn Connection) httpGet(url string, data *url.Values) (string, error) {
 	return conn.httpCall(url, "GET", data)
 }
 
-func (conn SplunkConnection) httpPost(url string, data *url.Values) (string, error) {
+func (conn Connection) httpPost(url string, data *url.Values) (string, error) {
 	return conn.httpCall(url, "POST", data)
 }
 
-func (conn SplunkConnection) httpCall(url string, method string, data *url.Values) (string, error) {
+func (conn Connection) httpCall(url string, method string, data *url.Values) (string, error) {
 	client := httpClient()
 
 	var payload io.Reader
@@ -52,7 +52,7 @@ func (conn SplunkConnection) httpCall(url string, method string, data *url.Value
 	return string(body), nil
 }
 
-func (conn SplunkConnection) addAuthHeader(request *http.Request) {
+func (conn Connection) addAuthHeader(request *http.Request) {
 	if conn.sessionKey.Value != "" {
 		request.Header.Add("Authorization", fmt.Sprintf("Splunk %s", conn.sessionKey.Value))
 	} else {
