@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/brittonhayes/splunk-golang"
+	"github.com/brittonhayes/splunk-golang/pkg/splunk"
 )
 
 func main() {
