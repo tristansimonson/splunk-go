@@ -27,7 +27,6 @@ git clone https://github.com/brittonhayes/splunk-golang
 
 ```bash
 go run main.go
-
 ```
 
 3. Use the Splunk REST API CLI!
@@ -42,22 +41,28 @@ package main
 import (
     "fmt"
     "os"
+    "github.com/logrusorgru/aurora"
     "github.com/brittonhayes/splunk-golang"
+    "github.com/spf13/viper"
 )
 
+func init() {
+	au = aurora.NewAurora(*colors)
+}
+
 func main() {
-    conn := splunk.Connection {
-            Username: os.Getenv("SPLUNK_USERNAME"),
-            Password: os.Getenv("SPLUNK_PASS"),
-            BaseURL: os.Getenv("SPLUNK_URL"),
+    conn := splunk.Connection{
+        Username: viper.GetString("SPLUNK_USERNAME"),
+        Password: viper.GetString("SPLUNK_PASSWORD"),
+        BaseURL:  viper.GetString("SPLUNK_URL"),
     }
 
-    key, err:= conn.Login()
+    key, err := conn.Login()
     if err != nil {
-            fmt.Println("Couldn't login to splunk: ", err)
+        log.Fatal(au.Red("Couldn't login to Splunk. Ensure your configuration is correct."))
     }
 
-    fmt.Println("Session key: ", key.Value)
+    fmt.Println("Logged in Successfully. \nSession key:", au.BrightBlue(key.Value))
 }
 ```
 
