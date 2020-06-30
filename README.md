@@ -9,6 +9,8 @@ A Splunk REST API Client written in Golang.
 - [Support](#support)
 - [Contributing](#contributing)
 
+![Go](https://github.com/brittonhayes/splunk-golang/workflows/Go/badge.svg)
+
 ## Installation :cloud:
 
 1. Install the package from Github
@@ -63,8 +65,39 @@ func main() {
 
 Once the binary is compiled and added to your path, you can utilize the CLI to perform Splunk operations.
 
+1. Build the binary
+
 ```shell
-splunk-golang --help
+go build -o ./bin/splunk-go .
+
+```
+
+2. Run the help command to get a list of possible actions
+
+```shell
+splunk-go --help
+```
+
+This will output a message like the following:
+
+```
+A Splunk REST API client written in GO.
+
+Usage:
+  splunk-go [command]
+
+Available Commands:
+  help        Help about any command
+  login       Authenticate to Splunk and return a session token.
+  restart     Restart the Splunk instance
+  search      Search Splunk for events.
+
+Flags:
+      --config string   config file (default is $HOME/.splunk-go.yaml)
+  -h, --help            help for splunk-go
+
+Use "splunk-go [command] --help" for more information about a command.
+
 ```
 
 ### Adding features to the package
