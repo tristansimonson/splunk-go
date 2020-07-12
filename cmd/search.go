@@ -10,8 +10,11 @@ import (
 	"github.com/spf13/viper"
 )
 
+var mode string
+
 func init() {
 	rootCmd.AddCommand(SearchCmd)
+	SearchCmd.Flags().StringVarP(&mode, "mode", "m", "json", "The output mode of the search: csv, json, json_cols, json_rows, raw, xml")
 }
 
 // SearchCmd is used to search splunk events
@@ -37,9 +40,9 @@ e.g. splunk-go search ~/.splunk-go/searches/my-search.spl
 		if err != nil {
 			log.Fatal(err)
 		}
-		text := string(content)
+		searchString := string(content)
 
-		response, err := conn.SearchSync(text)
+		response, err := conn.SearchSync(searchString, mode)
 		if err != nil {
 			log.Fatal(au.Red("Couldn't search Splunk. Ensure your configuration is correct."))
 		}
