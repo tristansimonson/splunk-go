@@ -18,7 +18,8 @@ splunk-go search [flags]
 ### Options
 
 ```
-  -h, --help   help for search
+  -h, --help          help for search
+  -m, --mode string   The output mode of the search: csv, json, json_cols, json_rows, raw, xml (default "json")
 ```
 
 ### Options inherited from parent commands
