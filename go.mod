@@ -10,6 +10,7 @@ require (
 	github.com/inconshreveable/mousetrap v1.0.0
 	github.com/logrusorgru/aurora v0.0.0-20190417123914-21d75270181e
 	github.com/magiconair/properties v1.8.1
+	github.com/manifoldco/promptui v0.7.0
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/mitchellh/mapstructure v1.3.2
 	github.com/pelletier/go-toml v1.8.0

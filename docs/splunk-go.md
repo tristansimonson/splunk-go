@@ -15,6 +15,7 @@ A Splunk REST API client written in GO.
 
 ### SEE ALSO
 
+* [splunk-go completion](splunk-go_completion.md)	 - Generate shell completions
 * [splunk-go docs](splunk-go_docs.md)	 - Automatically generate documentation for the CLI.
 * [splunk-go login](splunk-go_login.md)	 - Authenticate to Splunk and return a session token.
 * [splunk-go restart](splunk-go_restart.md)	 - Restart the Splunk instance
