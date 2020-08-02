@@ -22,5 +22,14 @@ var GenDocs = &cobra.Command{
 		if err != nil {
 			log.Fatal(err)
 		}
+
+		header := &doc.GenManHeader{
+			Title:   "Splunk GO",
+			Section: "1",
+		}
+		err = doc.GenManTree(rootCmd, header, "./docs/manual")
+		if err != nil {
+			log.Fatal(err)
+		}
 	},
 }
