@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="Banner Logo" src="https://user-images.githubusercontent.com/46035482/89118432-ae061200-d45a-11ea-8c6b-2e42718bb395.png" />
+  <img alt="Banner Logo" src="https://user-images.githubusercontent.com/46035482/89118313-a134ee80-d459-11ea-952c-b4fc3c88aaf5.png" />
 </div>
 
 <h1 align="center">Splunk Golang REST API Client</h1>
