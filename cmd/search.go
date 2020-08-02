@@ -5,8 +5,8 @@ import (
 	"io/ioutil"
 	"log"
 
-	splunk "github.com/brittonhayes/splunk-go"
-	"github.com/brittonhayes/splunk-go/internal"
+	"github.com/brittonhayes/splunk-golang/internal"
+	splunk "github.com/brittonhayes/splunk-golang/pkg"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
