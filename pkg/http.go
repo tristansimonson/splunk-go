@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 )
@@ -14,9 +15,13 @@ import (
  * HTTP helper methods
  */
 
+//  nosec
 func httpClient() *http.Client {
 	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: false,
+			MinVersion:         tls.VersionTLS12,
+		},
 	}
 	client := &http.Client{Transport: tr}
 	return client
@@ -47,7 +52,10 @@ func (conn Connection) httpCall(url string, method string, data *url.Values) (st
 		return "", err
 	}
 
-	body, _ := ioutil.ReadAll(response.Body)
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
 	response.Body.Close()
 	return string(body), nil
 }
