@@ -14,7 +14,11 @@
 
 ### 🏠 [Homepage](https://github.com/brittonhayes/splunk-go)
 
-### ✨ [Examples](https://github.com/brittonhayes/splunk-goe/master/examples)
+### ✨ [Examples](https://github.com/brittonhayes/splunk-go/master/examples)
+
+### :computer: [CLI Docs](https://pkg.go.dev/github.com/brittonhayes/splunk-go/cmd?tab=doc)
+
+### :gift: [Package Docs](https://pkg.go.dev/github.com/brittonhayes/splunk-go/pkg?tab=doc)
 
 ## Install
 
