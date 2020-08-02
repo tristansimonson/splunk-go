@@ -21,11 +21,11 @@ var (
 func init() {
 	//Commands
 	rootCmd.AddCommand(SystemCmd)
-	SystemCmd.AddCommand(restartCmd)
-	SystemCmd.AddCommand(controlsCmd)
+	SystemCmd.AddCommand(RestartCmd)
+	SystemCmd.AddCommand(ControlsCmd)
 
 	//Flags
-	restartCmd.Flags().BoolVarP(&confirm, "confirm", "c", false, "Confirm you would like to restart.")
+	RestartCmd.Flags().BoolVarP(&confirm, "confirm", "c", false, "Confirm you would like to restart.")
 
 	//Colors
 	au = aurora.NewAurora(*colors)
@@ -40,8 +40,8 @@ var SystemCmd = &cobra.Command{
 	},
 }
 
-// restartCmd is used to restart the Splunk instance
-var restartCmd = &cobra.Command{
+// RestartCmd is used to restart the Splunk instance
+var RestartCmd = &cobra.Command{
 	Use:   "restart",
 	Short: "Restart the Splunk instance",
 	Run: func(cmd *cobra.Command, args []string) {
@@ -66,7 +66,7 @@ var restartCmd = &cobra.Command{
 			}
 
 			if result == "Y" {
-				msg := restartSplunk()
+				msg := RestartSplunkInit()
 				fmt.Println(msg)
 			} else {
 				os.Exit(0)
@@ -77,8 +77,8 @@ var restartCmd = &cobra.Command{
 	},
 }
 
-// controlsCmd is used to restart the Splunk instance
-var controlsCmd = &cobra.Command{
+// ControlsCmd is used to restart the Splunk instance
+var ControlsCmd = &cobra.Command{
 	Use:   "controls [name]",
 	Short: "Lists actions that can be performed at this endpoint.",
 	Long: `
@@ -87,11 +87,12 @@ var controlsCmd = &cobra.Command{
 	Tip: Pipe into jq for prettified output`,
 	Run: func(cmd *cobra.Command, args []string) {
 		internal.Help(cmd, args)
-		fmt.Println(inspectControl(args[0]))
+		fmt.Println(InspectControlInit(args[0]))
 	},
 }
 
-func restartSplunk() string {
+// RestartSplunkInit is used to pass user auth into the RestartServer method from pkg
+func RestartSplunkInit() string {
 	conn := splunk.Connection{
 		Username: viper.GetString("SPLUNK_USERNAME"),
 		Password: viper.GetString("SPLUNK_PASSWORD"),
@@ -105,7 +106,8 @@ func restartSplunk() string {
 	return response
 }
 
-func inspectControl(endpoint string) string {
+// InspectControlInit is used to pass user auth into the InspectControl method from pkg
+func InspectControlInit(endpoint string) string {
 	conn := splunk.Connection{
 		Username: viper.GetString("SPLUNK_USERNAME"),
 		Password: viper.GetString("SPLUNK_PASSWORD"),
