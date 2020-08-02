@@ -12,7 +12,7 @@
   </a>
 </p>
 
-### 🏠 [Homepage](https://github.com/brittonhayes/splunk-go
+### 🏠 [Homepage](https://github.com/brittonhayes/splunk-go)
 
 ### ✨ [Examples](https://github.com/brittonhayes/splunk-goe/master/examples)
 
