@@ -13,6 +13,9 @@ security:
 build:
 	go build -o ./bin/splunk-go main.go
 
+install:
+	go install
+
 cross-compile:
 	echo "Compiling for every OS and Platform"
 	GOOS=freebsd GOARCH=386 go build -o bin/splunk-go-freebsd-386 main.go
@@ -22,4 +25,4 @@ cross-compile:
 run:
 	go run main.go
 
-all: dependencies format security docs build
+all: dependencies format security docs build install
