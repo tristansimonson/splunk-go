@@ -87,6 +87,10 @@ This will output a message like the following: [Help Output](https://github.com/
 
 3. After creating your command, run `make docs` to automatically update the documentation of all CLI commands.
 
+## Demo
+
+[![asciicast](https://asciinema.org/a/351327.svg)](https://asciinema.org/a/351327)
+
 ---
 
 ## Author
