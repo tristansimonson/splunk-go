@@ -102,6 +102,7 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 ## Acknowledgements
 
 Social image from [Ashley Mcnamara](https://github.com/ashleymcnamara/gophers)
+
 Original Project written by [drewrm](https://github.com/drewrm/splunk-golang)
 
 ## Show your support
