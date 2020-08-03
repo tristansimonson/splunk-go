@@ -5,10 +5,12 @@ import (
 	"fmt"
 	"net/url"
 	"os"
+	"os/user"
 	"path/filepath"
 	"strings"
 
 	"github.com/manifoldco/promptui"
+	"github.com/spf13/viper"
 )
 
 // SearchSync performs a search job on splunk with the provided search string
@@ -63,22 +65,49 @@ func GetSearchDir() string {
 		return nil
 	}
 
-	d, err := os.Getwd()
-	if err != nil {
-		fmt.Println(err)
-	}
-
 	dirPrompt := promptui.Prompt{
 		Label:    "Where are your Splunk search files?",
 		Validate: validate,
-		Default:  d,
+		Default:  viper.GetString("SEARCH_DIR"),
 	}
 
 	result, err := dirPrompt.Run()
 	if err != nil {
 		fmt.Printf("Prompt failed %v\n", err)
 	}
+	realpath := AbsHome(result)
 
-	return result
+	return realpath
+}
 
+//ValidSPL checks if the filetype is a valid .spl file
+func ValidSPL(path string) bool {
+	valid := false
+	if filepath.Ext(path) == ".spl" {
+		valid = true
+	} else {
+		valid = false
+	}
+
+	return valid
+}
+
+//AbsHome converts all tildes to the current user's absolute home path
+func AbsHome(path string) string {
+	// Get the current user's home dir
+	usr, _ := user.Current()
+	dir := usr.HomeDir
+
+	// Parse tilde symbols into prepended absolute home path
+	if path == "~" {
+		path = dir
+	} else if strings.HasPrefix(path, "~/") {
+		path = filepath.Join(dir, path[2:])
+	}
+	abs, err := filepath.Abs(path)
+	if err != nil {
+		fmt.Printf("Home path conversion failed %v\n", err)
+	}
+
+	return abs
 }

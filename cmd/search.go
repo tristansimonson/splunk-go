@@ -11,8 +11,10 @@ import (
 	"github.com/spf13/viper"
 )
 
-var mode string
-var interactive bool
+var (
+	mode        string
+	interactive bool
+)
 
 func init() {
 	rootCmd.AddCommand(SearchCmd)
@@ -31,31 +33,39 @@ e.g. splunk-go search ~/.splunk-go/searches/my-search.spl
 
 `,
 	Run: func(cmd *cobra.Command, args []string) {
-
 		conn := splunk.Connection{
 			Username: viper.GetString("SPLUNK_USERNAME"),
 			Password: viper.GetString("SPLUNK_PASSWORD"),
 			BaseURL:  viper.GetString("SPLUNK_URL"),
 		}
+		if interactive == false {
+			internal.Help(cmd, args)
 
-		if interactive == true {
-			file := splunk.SearchInteractive()
-			content, err := ioutil.ReadFile(file)
-			if err != nil {
-				log.Fatal(err)
+			if splunk.ValidSPL(args[0]) {
+				content, err := ioutil.ReadFile(args[0])
+				if err != nil {
+					log.Fatal(err)
+				}
+
+				result := searchString(string(content), mode, conn)
+				fmt.Println(result)
+			} else {
+				log.Fatal(au.Red("Please provide a valid .spl file."))
 			}
 
-			result := searchString(string(content), mode, conn)
-			fmt.Println(result)
-		} else {
-			internal.Help(cmd, args)
-			content, err := ioutil.ReadFile(args[0])
+		} else if interactive == true {
+			file := splunk.SearchInteractive()
+			if !splunk.ValidSPL(file) {
+				log.Fatal(au.Red("Please provide a valid .spl file."))
+			}
+			content, err := ioutil.ReadFile(file)
 			if err != nil {
 				log.Fatal(err)
 			}
 			result := searchString(string(content), mode, conn)
 			fmt.Println(result)
 		}
+
 	},
 }
 

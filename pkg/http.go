@@ -19,7 +19,7 @@ import (
 func httpClient() *http.Client {
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{
-			InsecureSkipVerify: false,
+			InsecureSkipVerify: true,
 			MinVersion:         tls.VersionTLS12,
 		},
 	}
