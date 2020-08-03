@@ -22,16 +22,17 @@ var completionCmd = &cobra.Command{
 	
 	# To load completions for each session, execute once:
 	Linux:
-		$ splunk-gopletion bash > /etc/bash_completion.d/splusplunk-go
+		$ splunk-go completion bash > /etc/bash_completion.d/splusplunk-go
 	MacOS:
-		$ splunk-gopletion bash > /usr/local/etc/bash_completion.d/splusplunk-go
+		$ splunk-go completion bash > /usr/local/etc/bash_completion.d/splusplunk-go
 	
 	Zsh:
 	
-	$ source <(splunk-gopletion zsh)
+	$ source <(splunk-go completion zsh)
 	
 	# To load completions for each session, execute once:
-	$ splunk-gopletion zsh > "${fpath[1]}/_splusplunk-go
+	$ splunk-go completion zsh > "${fpath[1]}/_splunk-go"
+	$ source ~/.zshrc
 	`,
 	DisableFlagsInUseLine: true,
 	ValidArgs:             []string{"bash", "zsh", "powershell"},

@@ -14,7 +14,7 @@
 
 ### 🏠 [Homepage](https://github.com/brittonhayes/splunk-go)
 
-### ✨ [Examples](https://github.com/brittonhayes/splunk-go/master/examples)
+### ✨ [Examples](https://github.com/brittonhayes/splunk-go/tree/master/examples)
 
 ### :computer: [CLI Docs](https://pkg.go.dev/github.com/brittonhayes/splunk-go/cmd?tab=doc)
 
