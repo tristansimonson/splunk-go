@@ -2,7 +2,7 @@ dependencies:
 	go mod tidy
 
 format:
-	go fmt .
+	go fmt ./...
 
 docs:
 	go run main.go docs

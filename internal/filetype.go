@@ -1,8 +1,8 @@
 package internal
 
 import (
-	"os"
 	"net/http"
+	"os"
 )
 
 // GetFileContentType finds out the filetype of the read file

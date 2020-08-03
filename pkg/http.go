@@ -15,8 +15,8 @@ import (
  * HTTP helper methods
  */
 
-//  nosec
 func httpClient() *http.Client {
+	/* #nosec */
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{
 			InsecureSkipVerify: true,

@@ -25,7 +25,7 @@ func init() {
 	SystemCmd.AddCommand(ControlsCmd)
 
 	//Flags
-	RestartCmd.Flags().BoolVarP(&confirm, "confirm", "c", false, "Confirm you would like to restart.")
+	RestartCmd.Flags().BoolVarP(&confirm, "confirm", "c", false, "confirm you would like to restart")
 
 	//Colors
 	au = aurora.NewAurora(*colors)
@@ -53,7 +53,7 @@ var RestartCmd = &cobra.Command{
 			return nil
 		}
 
-		if !confirm {
+		if confirm == false {
 			confirmPrompt := promptui.Prompt{
 				Label:    "Are you sure you'd like to restart Splunk? [Y/n]",
 				Validate: validate,
@@ -65,13 +65,16 @@ var RestartCmd = &cobra.Command{
 				fmt.Printf("Prompt failed %v\n", err)
 			}
 
-			if result == "Y" {
+			if result == "Y" || result == "y" {
 				msg := RestartSplunkInit()
 				fmt.Println(msg)
 			} else {
 				os.Exit(0)
 			}
 
+		} else {
+			msg := RestartSplunkInit()
+			fmt.Println(msg)
 		}
 
 	},
