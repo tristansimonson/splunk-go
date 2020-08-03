@@ -4,7 +4,7 @@
 
 <h1 align="center">Splunk Golang REST API Client</h1>
 
-> `splunk-go` is a Splunk REST API Client written in GO designed to allow common tasks for Splunk usage and administration to be conducted through an easy-to-use command line tool.
+> `splunk-go` is a Splunk REST API Client written in GO designed to allow common tasks for Splunk usage and administration to be conducted through an easy-to-use command line tool. This package assumes that you have a running instance of Splunk Enterprise with user credentials to access this instance. For all information related to the Splunk software, please visit https://www.splunk.com/en_us/software/splunk-enterprise.html
 
 <p>
   <a href="https://pkg.go.dev/github.com/brittonhayes/splunk-go?tab=overview" target="_blank">
