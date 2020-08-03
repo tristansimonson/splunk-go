@@ -89,7 +89,7 @@ This will output a message like the following: [Help Output](https://github.com/
 
 ## Demo
 
-[![asciicast](https://asciinema.org/a/351327.svg)](https://asciinema.org/a/351327)
+[![asciicast](https://asciinema.org/a/QEHBxxaB45kzrKZm1QUS78rPu.svg)](https://asciinema.org/a/QEHBxxaB45kzrKZm1QUS78rPu)
 
 ---
 
@@ -101,7 +101,7 @@ This will output a message like the following: [Help Output](https://github.com/
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check the [issues page](https://github.com/brittonhayes/splunk-goues). You can also take a look at the [contributing guide](https://github.com/brittonhayes/splusplunk-goster/contributing.md).
+Contributions, issues and feature requests are welcome!<br />Feel free to check the [issues page](https://github.com/brittonhayes/splunk-go/issues). You can also take a look at the [contributing guide](https://github.com/brittonhayes/splunk-go/blob/master/contributing.md).
 
 ## Acknowledgements
 
