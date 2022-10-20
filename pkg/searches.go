@@ -26,6 +26,12 @@ func (conn Connection) SearchSync(searchString string, outputMode string) (strin
 	return response, err
 }
 
+// SearchSyncData performs a search job on splunk with the provided search string and data
+func (conn Connection) SearchSyncData(searchString string, data url.Values, outputMode string) (string, error) {
+	response, err := conn.httpPost(fmt.Sprintf("%s/services/search/jobs/export", conn.BaseURL), &data)
+	return response, err
+}
+
 // SearchInteractive runs the interactive variant of SearchSync
 func SearchInteractive() string {
 
